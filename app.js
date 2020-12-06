@@ -22,6 +22,7 @@ app.use(
 );
 
 io.on('connection', (socket) => {
+  let users = [];
   socket.emit('connection', `Client connected as id : ${socket.id}`);
   console.log(io.engine.clientsCount);
   // socket.emit('FromAPI', 'Hello user ! You are connected as' + socket.id);
@@ -31,7 +32,8 @@ io.on('connection', (socket) => {
   });
 
   socket.on('user_connected', (user) => {
-    io.emit('all_users_connected', user);
+    users.push(user);
+    io.emit('all_users_connected', users);
   });
 });
 
