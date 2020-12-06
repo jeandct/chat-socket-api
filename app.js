@@ -20,9 +20,9 @@ app.use(
     origin: 'https://jeandct-chat.herokuapp.com/',
   })
 );
+let users = [];
 
 io.on('connection', (socket) => {
-  let users = [];
   socket.emit('connection', `Client connected as id : ${socket.id}`);
   console.log(io.engine.clientsCount);
   // socket.emit('FromAPI', 'Hello user ! You are connected as' + socket.id);
